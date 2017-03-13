@@ -1,5 +1,7 @@
 package br.ueg;
 
+import br.ueg.dao.DAO;
+import br.ueg.dao.GenericDAO;
 import br.ueg.model.Pessoa;
 
 import javax.persistence.Entity;
@@ -13,46 +15,12 @@ import javax.persistence.Persistence;
 public class Main {
 
     public static void main(String[] args) {
-        final String PERSISTENCE_UNIT = "progracaoIII";
+        DAO<Pessoa> dao = new GenericDAO<>(Pessoa.class);
+        Pessoa pessoa = new Pessoa();
+        pessoa.setNome("jaskdjlakdfjalsd");
 
-        final EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-
-        EntityManager em = factory.createEntityManager();
-
-        //Pessoa pessoa = new Pessoa();
-        //pessoa.setNome("Joel Rodrigeus");
-
-
-        Pessoa pessoa1 = null;
-        try {
-            pessoa1 = em.find(Pessoa.class, 1L);
-
-            em.getTransaction().begin();
-            pessoa1.setNome(pessoa1.getNome() + " 69989");
-            em.merge(pessoa1);
-            em.getTransaction().commit();
-
-            em.getTransaction().begin();
-
-            pessoa1 = em.find(Pessoa.class, 2L);
-            pessoa1 = em.merge(pessoa1);
-            pessoa1.setNome("lkasdkajshdkjahldf");
-
-            em.getTransaction().commit();;
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            em.getTransaction().rollback();
-        }
-
-
-                Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Fechando a fabrica de conexão");
-                factory.close();
-            }
-        }));
+        pessoa = dao.save(pessoa);
+        System.out.println(pessoa);
 
         System.exit(0);
     }

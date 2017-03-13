@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "pessoa")
-public class Pessoa implements Serializable {
+public class Pessoa implements Serializable, Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,8 @@ public class Pessoa implements Serializable {
     public Long getId() {
         return id;
     }
+
+
 
     public void setId(Long id) {
         this.id = id;

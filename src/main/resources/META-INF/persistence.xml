@@ -27,7 +27,7 @@
             update => irá criar o base de dados caso a mesma não exista e irá refletir toda e qualquer atulização que for realizada no modelo
             validate => irá apenas validar a base de dados com o seu modelo mapeado, a mesma não executa nenhum timpo de alteração na base, apenas valida a mesma.
             Para produção é mais indicado utilizar 'validate'-->
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
             <!--Exibirá toda e qualquer SQL executada pelo hibernate-->
             <property name="hibernate.show_sql" value="true"/>
             <!--Formata as SQL impressas pelo hibernate-->
