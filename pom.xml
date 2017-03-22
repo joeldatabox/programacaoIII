@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.com.ueg</groupId>
-    <artifactId>programacao_I</artifactId>
+    <artifactId>programacao_III</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -70,6 +70,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
+        <!--Flayway ##################################################################################################-->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        <!--##########################################################################################################-->
     </dependencies>
 
 </project>
