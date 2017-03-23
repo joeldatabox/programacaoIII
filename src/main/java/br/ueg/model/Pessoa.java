@@ -1,7 +1,11 @@
 package br.ueg.model;
 
+import br.ueg.model.enumeration.Sexo;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,8 +19,11 @@ public class Pessoa implements Serializable, Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nome",nullable =false,length = 100)
+    @Column(name = "nome", nullable = false, length = 100)
     private String nome;
+    @Column(name = "sexo", columnDefinition = "enum('M','F')")
+    @Enumerated(EnumType.STRING)
+    private Sexo sexo;
 
     public Pessoa() {
     }
@@ -30,7 +37,6 @@ public class Pessoa implements Serializable, Model {
     public Long getId() {
         return id;
     }
-
 
 
     public void setId(Long id) {
