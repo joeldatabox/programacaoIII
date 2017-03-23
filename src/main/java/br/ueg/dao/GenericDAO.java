@@ -3,12 +3,15 @@ package br.ueg.dao;
 import br.ueg.model.Model;
 
 import javax.persistence.EntityManager;
+import javax.validation.Validation;
+import javax.validation.Validator;
 
 /**
  * Created by joel on 02/03/17.
  */
 public class GenericDAO<T extends Model> implements DAO<T> {
     protected Class clazz;
+    Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
     public GenericDAO(Class clazz) {
         this.clazz = clazz;
@@ -54,6 +57,7 @@ public class GenericDAO<T extends Model> implements DAO<T> {
     }
 
     private T merge(T value) {
+        validator.validate(value);
         EntityManager em = null;
 
         try {

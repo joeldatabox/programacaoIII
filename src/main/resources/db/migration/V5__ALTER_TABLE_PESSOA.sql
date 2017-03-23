@@ -1,0 +1,2 @@
+ALTER TABLE pessoa
+  ADD cpf VARCHAR (20) UNIQUE NULL;

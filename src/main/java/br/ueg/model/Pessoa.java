@@ -1,6 +1,7 @@
 package br.ueg.model;
 
 import br.ueg.model.enumeration.Sexo;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "pessoa")
@@ -24,6 +26,9 @@ public class Pessoa implements Serializable, Model {
     @Column(name = "sexo", columnDefinition = "enum('M','F')")
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
+    @Column(name = "cpf", unique = true)
+    @CPF(message = "ERRO AO VALIDAR CPF")
+    private String cpf;
 
     public Pessoa() {
     }
@@ -51,6 +56,22 @@ public class Pessoa implements Serializable, Model {
         this.nome = nome;
     }
 
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpr) {
+        this.cpf = cpr;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,6 +82,6 @@ public class Pessoa implements Serializable, Model {
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return Objects.hash(getId());
     }
 }
