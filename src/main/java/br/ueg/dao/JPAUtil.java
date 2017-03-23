@@ -1,5 +1,7 @@
 package br.ueg.dao;
 
+import br.ueg.infra.Migrations;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -16,6 +18,9 @@ public class JPAUtil {
 
     private static EntityManagerFactory getFactory() {
         if (factory == null) {
+            //Devemos migrar o banco antes mesmo de criar a fabrica de EntityManager
+            Migrations.executeMigrations();
+            //cria a fabrica de entityManager
             factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 
             Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
